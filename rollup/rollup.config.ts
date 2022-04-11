@@ -8,7 +8,7 @@ import type { ExternalOption, GlobalsOption } from "rollup";
 const fileName = "moment-ex-tool";
 const outName = "MET";
 const external: ExternalOption = ["moment"];
-const globals: GlobalsOption = { lodash: "moment" };
+const globals: GlobalsOption = { moment: "moment" };
 
 export default defineConfig([
     // esm

@@ -8,7 +8,15 @@
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/moment@latest/moment.min.js"></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script> -->
-        <!-- <script src="../../dist/iife/yiu-js.ex.min.js"></script> -->
+        <script src="../../dist/iife/moment-ex-tool.ex.min.js"></script>
+        <script>
+            const a = moment("Hello");
+            console.log(MET.toStr(a));
+            const b = moment();
+            console.log(MET.toStr(b));
+            console.log(MET.toStr(a.clone().startOf('date')));
+            console.log(MET.toStr(b.clone().startOf('date')));
+            console.log(MET.toStr(b.clone().endOf('date')));
+        </script>
     </body>
 </html>
