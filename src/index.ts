@@ -4,9 +4,8 @@ import type * as metType from "./types";
 export type { metType };
 
 // to工具类
-import toMoment from "./to/to-moment";
 import toStr from "./to/to-str";
-export { toMoment, toStr };
+export { toStr };
 
 // is工具类
 import isIntersectSame from "./is/is-intersect-same";

@@ -1,13 +1,13 @@
-import toMoment from "../to/to-moment";
+import moment from "moment";
 
 /**
  * 时间段是否相交
  */
 export default function isIntersect(t1: moment.Moment, t2: moment.Moment, t3: moment.Moment, t4: moment.Moment): boolean {
-    const x1 = toMoment(t1);
-    const x2 = toMoment(t2);
-    const x3 = toMoment(t3);
-    const x4 = toMoment(t4);
+    const x1 = moment(t1);
+    const x2 = moment(t2);
+    const x3 = moment(t3);
+    const x4 = moment(t4);
     if (x1.isValid() || x2.isValid() || x3.isValid() || x4.isValid()) return false;
     const l1 = x1.isBefore(x2) ? x1 : x2;
     const l2 = x1.isBefore(x2) ? x2 : x1;

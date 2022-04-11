@@ -1,4 +1,4 @@
-import toMoment from "../to/to-moment";
+import moment from "moment";
 
 /**
  * 获取毫秒时间戳
@@ -7,7 +7,6 @@ import toMoment from "../to/to-moment";
  *
  * 如果是非法参数，则会返回NaN
  */
-export default function getTime(inp?: moment.MomentInput, strict?: boolean | undefined): number {
-    const date = toMoment(inp, strict);
+export default function getTime(date: moment.Moment): number {
     return date.toDate().getTime();
 }
