@@ -21,6 +21,7 @@ export default function getSliceTimeWithFormat(t1: moment.Moment, t2: moment.Mom
     let startUnit: moment.unitOfTime.StartOf = "d";
     let silceNum: moment.DurationInputArg1 = 1;
     let addUnit: moment.DurationInputArg2 = "d";
+    let exclude: (startTime?: moment.Moment, endTime?: moment.Moment) => boolean = () => false;
     if (opt) {
         if (typeof opt.includEnd === "boolean") {
             includEnd = opt.includEnd;
@@ -33,6 +34,9 @@ export default function getSliceTimeWithFormat(t1: moment.Moment, t2: moment.Mom
         }
         if (opt.addUnit) {
             addUnit = opt.addUnit;
+        }
+        if (opt.exclude && typeof opt.exclude === "function") {
+            exclude = opt.exclude;
         }
     }
     const [tempStartTime, endTime] = getAsc([t1, t2]);
@@ -49,5 +53,5 @@ export default function getSliceTimeWithFormat(t1: moment.Moment, t2: moment.Mom
     if (includEnd && lastTime && lastTime.isSameOrBefore(endTime)) {
         result.push([startTime.clone(), startTime.clone().add(silceNum, addUnit)]);
     }
-    return result;
+    return result.filter(([startDate, endDate]) => !exclude(startDate, endDate));
 }

@@ -1,7 +1,7 @@
 // 所有类型文件
 // 获取方法的类型
-import type * as metType from "./types";
-export type { metType };
+import type * as MetType from "./types";
+export type { MetType };
 
 // to工具类
 import toStr from "./to/to-str";
@@ -16,9 +16,12 @@ export { isIntersectSame, isIntersect, isWeekend };
 // get工具类
 import getAsc from "./get/get-asc";
 import getDesc from "./get/get-desc";
+import getMax from "./get/get-max";
+import getMinMax from "./get/get-min-max";
+import getMin from "./get/get-min";
 import getSliceNumWithFormat from "./get/get-slice-num-with-format";
 import getSliceNum from "./get/get-slice-num";
 import getSliceTimeWithFormat from "./get/get-slice-time-with-format";
 import getSliceTime from "./get/get-slice-time";
 import getTime from "./get/get-time";
-export { getAsc, getDesc, getSliceNumWithFormat, getSliceNum, getSliceTimeWithFormat, getSliceTime, getTime };
+export { getAsc, getDesc, getMax, getMinMax, getMin, getSliceNumWithFormat, getSliceNum, getSliceTimeWithFormat, getSliceTime, getTime };

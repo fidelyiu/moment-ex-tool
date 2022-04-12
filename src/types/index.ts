@@ -14,6 +14,11 @@ export type SliceNumOpt = {
      * 以什么单位算添加时间
      */
     addUnit: moment.DurationInputArg2;
+    /**
+     * 排除的时间段
+     * 返回true，则不要指定时间段
+     */
+    exclude: (startTime?: moment.Moment, endTime?: moment.Moment) => boolean;
 };
 
 /**
