@@ -5,7 +5,7 @@ import type { InType } from "../types";
 /**
  * 判断`t1`是否包含在`t2`、`t3`中
  */
-export default function isIn(t1: moment.Moment, t2: moment.Moment, t3: moment.Moment, inType: InType): boolean {
+export default function isIn(t1: moment.Moment, t2: moment.Moment, t3: moment.Moment, inType: InType = '[]'): boolean {
     const d1 = moment(t1);
     const x1 = moment(t2);
     const x2 = moment(t3);
