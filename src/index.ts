@@ -8,10 +8,11 @@ import toStr from "./to/to-str";
 export { toStr };
 
 // is工具类
+import isIn from "./is/is-in";
 import isIntersectSame from "./is/is-intersect-same";
 import isIntersect from "./is/is-intersect";
 import isWeekend from "./is/is-weekend";
-export { isIntersectSame, isIntersect, isWeekend };
+export { isIn, isIntersectSame, isIntersect, isWeekend };
 
 // get工具类
 import getAsc from "./get/get-asc";
