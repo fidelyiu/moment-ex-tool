@@ -10,6 +10,6 @@ export default function isIntersectSame(t1: moment.Moment, t2: moment.Moment, t3
     const x2 = moment(t2);
     const x3 = moment(t3);
     const x4 = moment(t4);
-    if (x1.isValid() || x2.isValid() || x3.isValid() || x4.isValid()) return false;
+    if (!x1.isValid() || !x2.isValid() || !x3.isValid() || !x4.isValid()) return false;
     return x1.isSame(x3) || x3.isSame(x2) || (x1.isSame(x4) && x4.isSame(x2));
 }

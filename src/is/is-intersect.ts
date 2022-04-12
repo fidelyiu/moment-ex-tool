@@ -8,7 +8,7 @@ export default function isIntersect(t1: moment.Moment, t2: moment.Moment, t3: mo
     const x2 = moment(t2);
     const x3 = moment(t3);
     const x4 = moment(t4);
-    if (x1.isValid() || x2.isValid() || x3.isValid() || x4.isValid()) return false;
+    if (!x1.isValid() || !x2.isValid() || !x3.isValid() || !x4.isValid()) return false;
     const l1 = x1.isBefore(x2) ? x1 : x2;
     const l2 = x1.isBefore(x2) ? x2 : x1;
     const l3 = x3.isBefore(x4) ? x3 : x4;
