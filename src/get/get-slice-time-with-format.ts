@@ -45,9 +45,8 @@ export default function getSliceTimeWithFormat(t1: moment.Moment, t2: moment.Mom
     if (startTime.isSame(endTime)) {
         if (includEnd) {
             return [[startTime.clone(), startTime.clone().add(silceNum, addUnit)]];
-        } else {
-            return [];
         }
+        return [];
     }
     const result: Array<[moment.Moment, moment.Moment]> = [];
     let lastTime;
