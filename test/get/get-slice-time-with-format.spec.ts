@@ -17,5 +17,15 @@ test("getSliceTimeWithFormat 获取时间段中格式化切片", () => {
     const d2 = moment(staticTime, format).startOf("d");
     const result3 = getSliceTimeWithFormat(d2, d2).map((i) => i.map((j) => toStr(j)));
     // console.log("result3", result3);
-    expect(result3).toEqual([]);
+    expect(result3).toEqual([["2022-04-12 00:00:00:000", "2022-04-13 00:00:00:000"]]);
+
+    const d3 = moment(staticTime, format);
+    const result4 = getSliceTimeWithFormat(d3, d3.clone().add(1, "minutes")).map((i) => i.map((j) => toStr(j)));
+    // console.log("result4", result4);
+    expect(result4).toEqual([["2022-04-12 00:00:00:000", "2022-04-13 00:00:00:000"]]);
+
+    const d4 = moment(staticTime, format).startOf("d");
+    const result5 = getSliceTimeWithFormat(d4, d4, { includEnd: false }).map((i) => i.map((j) => toStr(j)));
+    // console.log("result5", result5);
+    expect(result5).toEqual([]);
 });

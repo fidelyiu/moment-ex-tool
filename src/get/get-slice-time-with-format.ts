@@ -42,7 +42,13 @@ export default function getSliceTimeWithFormat(t1: moment.Moment, t2: moment.Mom
     const [tempStartTime, endTime] = getAsc([t1, t2]);
     if (!tempStartTime || !endTime) return [];
     const startTime = tempStartTime.startOf(startUnit);
-    if (startTime.isSame(endTime)) return [];
+    if (startTime.isSame(endTime)) {
+        if (includEnd) {
+            return [[startTime.clone(), startTime.clone().add(silceNum, addUnit)]];
+        } else {
+            return [];
+        }
+    }
     const result: Array<[moment.Moment, moment.Moment]> = [];
     let lastTime;
     while (startTime.isBefore(endTime)) {

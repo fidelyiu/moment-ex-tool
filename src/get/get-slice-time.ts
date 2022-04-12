@@ -37,7 +37,14 @@ export default function getSliceTime(t1: moment.Moment, t2: moment.Moment, opt?:
         }
     }
     const [startTime, endTime] = getAsc([t1, t2]);
-    if (!startTime || !endTime || startTime.isSame(endTime)) return [];
+    if (!startTime || !endTime) return [];
+    if (startTime.isSame(endTime)) {
+        if (includEnd) {
+            return [[startTime.clone(), startTime.clone().add(silceNum, addUnit)]];
+        } else {
+            return [];
+        }
+    }
     let lastTime;
     const result: Array<[moment.Moment, moment.Moment]> = [];
     while (startTime.isBefore(endTime)) {
