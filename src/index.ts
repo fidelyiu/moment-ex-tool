@@ -4,8 +4,9 @@ import type * as MetType from "./types";
 export type { MetType };
 
 // to工具类
+import toMoment from "./to/to-moment";
 import toStr from "./to/to-str";
-export { toStr };
+export { toMoment, toStr };
 
 // is工具类
 import isIn from "./is/is-in";

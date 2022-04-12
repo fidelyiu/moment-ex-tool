@@ -7,7 +7,6 @@ import moment from "moment";
  *
  * 该方法旨在于快速显示可读的时间格式，如果需要自定义还是请使用`moment().format()`
  */
-export default function toStr(inp?: moment.MomentInput, strict?: boolean | undefined): string {
-    const date = moment(inp, strict);
+export default function toStr(date: moment.Moment): string {
     return date.format("YYYY-MM-DD HH:mm:ss:SSS");
 }
