@@ -19,17 +19,11 @@ export type SliceNumOpt = {
      * 返回true，则不要指定时间段
      */
     exclude: (startTime?: moment.Moment, endTime?: moment.Moment) => boolean;
-};
-
-/**
- * 获取两个时间段间切片数量的配置
- */
-export type SliceNumWithFormatOpt = {
     /**
      * 以什么单位算开始时间
      */
     startUnit: moment.unitOfTime.StartOf;
-} & SliceNumOpt;
+};
 
 /**
  * 包含符号

@@ -19,12 +19,16 @@ import moment from "moment";
  */
 export default function getSliceTime(t1: moment.Moment, t2: moment.Moment, opt?: Partial<SliceNumOpt>): Array<[moment.Moment, moment.Moment]> {
     let includEnd = true;
+    let startUnit: moment.unitOfTime.StartOf | undefined = undefined;
     let silceNum: moment.DurationInputArg1 = 1;
     let addUnit: moment.DurationInputArg2 = "d";
     let exclude: (startTime?: moment.Moment, endTime?: moment.Moment) => boolean = () => false;
     if (opt) {
         if (typeof opt.includEnd === "boolean") {
             includEnd = opt.includEnd;
+        }
+        if (opt.startUnit) {
+            startUnit = opt.startUnit;
         }
         if (opt.silceNum) {
             silceNum = opt.silceNum;
@@ -36,16 +40,20 @@ export default function getSliceTime(t1: moment.Moment, t2: moment.Moment, opt?:
             exclude = opt.exclude;
         }
     }
-    const [startTime, endTime] = getAsc([t1, t2]);
-    if (!startTime || !endTime) return [];
-    if (startTime.isSame(endTime)) {
+    const [tempStartTime, endTime] = getAsc([t1, t2]);
+    if (!tempStartTime || !endTime) return [];
+    let startTime = tempStartTime;
+    if (startUnit) {
+        startTime = tempStartTime.startOf(startUnit);
+    }
+    if (startTime.clone().add(silceNum, addUnit).isSameOrAfter(endTime)) {
         if (includEnd) {
             return [[startTime.clone(), startTime.clone().add(silceNum, addUnit)]];
         }
         return [];
     }
-    let lastTime;
     const result: Array<[moment.Moment, moment.Moment]> = [];
+    let lastTime;
     while (startTime.isBefore(endTime)) {
         result.push([startTime.clone(), startTime.clone().add(silceNum, addUnit)]);
         lastTime = startTime.clone().add(silceNum, addUnit);
