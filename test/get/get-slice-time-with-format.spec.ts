@@ -1,4 +1,5 @@
 import getSliceTimeWithFormat from "../../src/get/get-slice-time-with-format";
+import isWeekend from "../../src/is/is-weekend";
 import toStr from "../../src/to/to-str";
 import toMoment from "../../src/to/to-moment";
 
@@ -121,6 +122,43 @@ describe("getSliceTimeWithFormat 获取时间段中格式化切片", () => {
             ["2022-03-23 00:00:00:000", "2022-03-30 00:00:00:000"],
             ["2022-03-30 00:00:00:000", "2022-04-06 00:00:00:000"],
             ["2022-04-06 00:00:00:000", "2022-04-13 00:00:00:000"],
+        ]);
+    });
+
+    it("测试12", () => {
+        const staticTime = toMoment("2022-04-12 00:00:00:000");
+        const endTime = toMoment("2022-04-13 00:00:00:000");
+        const result = getSliceTimeWithFormat(staticTime, endTime);
+        expect(sliceResultToStr(result)).toEqual([["2022-04-12 00:00:00:000", "2022-04-13 00:00:00:000"]]);
+    });
+
+    it("测试13", () => {
+        const staticTime = toMoment("2022-04-12 00:00:00:000");
+        const endTime = toMoment("2022-04-12 00:00:00:000");
+        const result = getSliceTimeWithFormat(staticTime, endTime, {
+            silceNum: 7,
+        });
+        expect(sliceResultToStr(result)).toEqual([["2022-04-12 00:00:00:000", "2022-04-19 00:00:00:000"]]);
+    });
+
+    it("测试14", () => {
+        const staticTime = toMoment("2022-04-12 00:00:00:000");
+        const endTime = toMoment("2022-04-19 00:00:00:000");
+        const result = getSliceTimeWithFormat(staticTime, endTime, {
+            exclude: (startDate, endDate) => {
+                // 不存在排除
+                if (!startDate || !endDate) return true;
+                return isWeekend(startDate);
+            },
+        });
+        expect(sliceResultToStr(result)).toEqual([
+            ["2022-04-12 00:00:00:000", "2022-04-13 00:00:00:000"],
+            ["2022-04-13 00:00:00:000", "2022-04-14 00:00:00:000"],
+            ["2022-04-14 00:00:00:000", "2022-04-15 00:00:00:000"],
+            ["2022-04-15 00:00:00:000", "2022-04-16 00:00:00:000"],
+            // ["2022-04-16 00:00:00:000", "2022-04-17 00:00:00:000"],
+            // ["2022-04-17 00:00:00:000", "2022-04-18 00:00:00:000"],
+            ["2022-04-18 00:00:00:000", "2022-04-19 00:00:00:000"],
         ]);
     });
 });
