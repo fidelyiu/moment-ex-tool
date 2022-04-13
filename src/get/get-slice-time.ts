@@ -19,6 +19,7 @@ import moment from "moment";
  */
 export default function getSliceTime(t1: moment.Moment, t2: moment.Moment, opt?: Partial<SliceNumOpt>): Array<[moment.Moment, moment.Moment]> {
     let includEnd = true;
+    let isSameEnd = false;
     let startUnit: moment.unitOfTime.StartOf | undefined = undefined;
     let silceNum: moment.DurationInputArg1 = 1;
     let addUnit: moment.DurationInputArg2 = "d";
@@ -26,6 +27,9 @@ export default function getSliceTime(t1: moment.Moment, t2: moment.Moment, opt?:
     if (opt) {
         if (typeof opt.includEnd === "boolean") {
             includEnd = opt.includEnd;
+        }
+        if (typeof opt.isSameEnd === "boolean") {
+            isSameEnd = opt.isSameEnd;
         }
         if (opt.startUnit) {
             startUnit = opt.startUnit;
@@ -46,21 +50,19 @@ export default function getSliceTime(t1: moment.Moment, t2: moment.Moment, opt?:
     if (startUnit) {
         startTime = tempStartTime.startOf(startUnit);
     }
-    if (startTime.clone().add(silceNum, addUnit).isSameOrAfter(endTime)) {
-        if (includEnd) {
-            return [[startTime.clone(), startTime.clone().add(silceNum, addUnit)]];
-        }
-        return [];
-    }
     const result: Array<[moment.Moment, moment.Moment]> = [];
-    let lastTime;
-    while (startTime.isBefore(endTime)) {
-        result.push([startTime.clone(), startTime.clone().add(silceNum, addUnit)]);
-        lastTime = startTime.clone().add(silceNum, addUnit);
+    while (startTime.isSameOrBefore(endTime)) {
+        const item: [moment.Moment, moment.Moment] = [startTime.clone(), startTime.clone().add(silceNum, addUnit)];
         startTime.add(silceNum, addUnit);
-    }
-    if (includEnd && lastTime && lastTime.isSameOrBefore(endTime)) {
-        result.push([startTime.clone(), startTime.clone().add(silceNum, addUnit)]);
+        if (startTime.isSameOrAfter(endTime)) {
+            if (includEnd) {
+                result.push(item);
+            }
+            if (!isSameEnd) break;
+        }
+        if (startTime.isBefore(endTime)) {
+            result.push(item);
+        }
     }
     return result.filter(([startDate, endDate]) => !exclude(startDate, endDate));
 }
