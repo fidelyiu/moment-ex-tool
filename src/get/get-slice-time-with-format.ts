@@ -3,7 +3,7 @@ import getSliceTime from "./get-slice-time";
 import type { SliceNumOpt } from "../types";
 
 /**
- * 判断`t1`、`t2`之间有多少时间切片，会将`t1`进行`startOf`处理
+ * 判断`t1`、`t2`之间有多少时间切片，会自动对`t1`进行`startOf`处理，默认'd'。
  *
  * 返回时间段数组
  *
