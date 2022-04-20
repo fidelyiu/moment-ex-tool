@@ -12,8 +12,9 @@ export { toMoment, toStr };
 import isIn from "./is/is-in";
 import isIntersectSame from "./is/is-intersect-same";
 import isIntersect from "./is/is-intersect";
+import isPeriodIn from "./is/is-period-in";
 import isWeekend from "./is/is-weekend";
-export { isIn, isIntersectSame, isIntersect, isWeekend };
+export { isIn, isIntersectSame, isIntersect, isPeriodIn, isWeekend };
 
 // get工具类
 import getAsc from "./get/get-asc";

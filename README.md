@@ -89,7 +89,24 @@ const inType: MetType.InType = '()';
 isIn(t3, startTime, endTime, inType); // 大于、小于, true
 ```
 
-### 3.2.2.`isIntersect`
+
+### 3.2.2.`isPeriodIn`
+
+时间段版的`isIn`。
+```js
+const startTime = toMoment('2022-04-13 00:00:00:000');
+const endTime = toMoment('2022-04-15 00:00:00:000');
+
+
+const t1 = toMoment('2022-04-13 00:00:00:000');
+const t2 = toMoment('2022-04-14 00:00:00:000');
+isPeriodIn(t1, t2, startTime, endTime, '(]');
+// false
+isPeriodIn(t1, t2, startTime, endTime);
+// true
+```
+
+### 3.2.3.`isIntersect`
 判断时间段`[t1, t2]`和时间段`[t3, t4]`是否相交，不包含单个端点重合情况（如需要请使用`isIntersectSame`）。
 ```js
 const t1 = toMoment('2022-04-13 00:00:00:000');
@@ -101,7 +118,7 @@ isIntersect(t1, t2, t3, t4); // true
 isIntersect(t1, t2, t2, t4); // false
 ```
 
-### 3.2.2.`isIntersectSame`
+### 3.2.4.`isIntersectSame`
 同`isIntersect`，但包含单个端点重合情况。
 ```js
 const t1 = toMoment('2022-04-13 00:00:00:000');
@@ -113,7 +130,7 @@ isIntersect(t1, t2, t3, t4); // true
 isIntersect(t1, t2, t2, t4); // true
 ```
 
-### 3.2.3.`isWeekend`
+### 3.2.5.`isWeekend`
 是否为周末。
 ```js
 const t1 = toMoment('2022-04-15 00:00:00:000'); // 星期五

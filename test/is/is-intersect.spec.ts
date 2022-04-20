@@ -1,7 +1,6 @@
-import moment from "moment";
 import isIntersect from "../../src/is/is-intersect";
+import toMoment from "../../src/to/to-moment";
 
-const format = "YYYY-MM-DD HH:mm:ss:SSS";
 describe.each([
     { x1: "2022-03-12 00:00:00:000", x2: "2022-05-13 00:00:00:000", x3: "2022-04-15 08:00:00:00", x4: "2022-04-18 08:00:00:000", result: true },
     { x1: "2022-04-11 00:00:00:000", x2: "2022-04-12 00:00:00:000", x3: "2022-04-12 08:00:00:000", x4: "2022-04-12 08:00:00:000", result: false },
@@ -17,7 +16,7 @@ describe.each([
     { x1: "2022-04-13 00:00:00:000", x2: "2022-04-12 00:00:00:000", x3: "2022-04-16 08:00:00:000", x4: "2022-04-11 08:00:00:000", result: true },
 ])("isIntersect: 相交测试", ({ x1, x2, x3, x4, result }) => {
     it(`[${x1}, ${x2}, ${x3}, ${x4}]: 相交测试`, () => {
-        const data = isIntersect(moment(x1, format), moment(x2, format), moment(x3, format), moment(x4, format));
+        const data = isIntersect(toMoment(x1), toMoment(x2), toMoment(x3), toMoment(x4));
         expect(data).toBe(result);
     });
 });
