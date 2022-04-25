@@ -161,4 +161,51 @@ describe("getSliceTimeWithFormat 获取时间段中格式化切片", () => {
             ["2022-04-18 00:00:00:000", "2022-04-19 00:00:00:000"],
         ]);
     });
+
+    it("测试15", () => {
+        const staticTime = toMoment("2022-04-12 02:00:00:000");
+        const endTime = toMoment("2022-04-15 02:00:00:000");
+        const result = getSliceTimeWithFormat(staticTime, endTime);
+        expect(sliceResultToStr(result)).toEqual([
+            ["2022-04-12 00:00:00:000", "2022-04-13 00:00:00:000"],
+            ["2022-04-13 00:00:00:000", "2022-04-14 00:00:00:000"],
+            ["2022-04-14 00:00:00:000", "2022-04-15 00:00:00:000"],
+            ["2022-04-15 00:00:00:000", "2022-04-16 00:00:00:000"],
+        ]);
+    });
+
+    it("测试16", () => {
+        const staticTime = toMoment("2022-04-12 02:00:00:000");
+        const endTime = toMoment("2022-04-15 00:00:00:000");
+        const result = getSliceTimeWithFormat(staticTime, endTime);
+        expect(sliceResultToStr(result)).toEqual([
+            ["2022-04-12 00:00:00:000", "2022-04-13 00:00:00:000"],
+            ["2022-04-13 00:00:00:000", "2022-04-14 00:00:00:000"],
+            ["2022-04-14 00:00:00:000", "2022-04-15 00:00:00:000"],
+        ]);
+    });
+
+    it("测试17", () => {
+        const staticTime = toMoment("2022-04-12 02:00:00:000");
+        const endTime = toMoment("2022-04-15 00:00:00:000");
+        const result = getSliceTimeWithFormat(staticTime, endTime, { includEnd: true, isSameEnd: true });
+        expect(sliceResultToStr(result)).toEqual([
+            ["2022-04-12 00:00:00:000", "2022-04-13 00:00:00:000"],
+            ["2022-04-13 00:00:00:000", "2022-04-14 00:00:00:000"],
+            ["2022-04-14 00:00:00:000", "2022-04-15 00:00:00:000"],
+            ["2022-04-15 00:00:00:000", "2022-04-16 00:00:00:000"],
+        ]);
+    });
+
+    it("测试18", () => {
+        const staticTime = toMoment("2022-04-12 02:00:00:000");
+        const endTime = toMoment("2022-04-15 02:00:00:000");
+        const result = getSliceTimeWithFormat(staticTime, endTime, { includEnd: true, isSameEnd: true });
+        expect(sliceResultToStr(result)).toEqual([
+            ["2022-04-12 00:00:00:000", "2022-04-13 00:00:00:000"],
+            ["2022-04-13 00:00:00:000", "2022-04-14 00:00:00:000"],
+            ["2022-04-14 00:00:00:000", "2022-04-15 00:00:00:000"],
+            ["2022-04-15 00:00:00:000", "2022-04-16 00:00:00:000"],
+        ]);
+    });
 });
