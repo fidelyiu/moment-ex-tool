@@ -7,6 +7,7 @@ export default function getSliceTimeStamp(t1: number, t2: number, opt?: Partial<
     let isSameEnd = false;
     let startUnit: moment.unitOfTime.StartOf | undefined = undefined;
     let addNum = 86400000;
+
     let exclude: (startTime?: number, endTime?: number) => boolean = () => false;
     if (opt) {
         if (typeof opt.includEnd === "boolean") {
@@ -45,7 +46,7 @@ export default function getSliceTimeStamp(t1: number, t2: number, opt?: Partial<
             }
             if (!isSameEnd) break;
         }
-        if (t1 === t2) {
+        if (t1 < t2) {
             result.push(item);
         }
     }
