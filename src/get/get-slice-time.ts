@@ -1,6 +1,6 @@
 import getAsc from "./get-asc";
 
-import type { SliceNumOpt } from "../types";
+import type { SliceOpt } from "../types";
 import moment from "moment";
 
 /**
@@ -17,7 +17,7 @@ import moment from "moment";
  * ]
  * ```
  */
-export default function getSliceTime(t1: moment.Moment, t2: moment.Moment, opt?: Partial<SliceNumOpt>): Array<[moment.Moment, moment.Moment]> {
+export default function getSliceTime(t1: moment.Moment, t2: moment.Moment, opt?: Partial<SliceOpt>): Array<[moment.Moment, moment.Moment]> {
     let includEnd = true;
     let isSameEnd = false;
     let startUnit: moment.unitOfTime.StartOf | undefined = undefined;
