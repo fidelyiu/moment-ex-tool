@@ -44,5 +44,11 @@
     },
     "repository": "https://github.com/fidelyiu/moment-ex-tool.git",
     "author": "Fidel Yiu <fidel-yiu@foxmail.com>",
-    "license": "MIT"
+    "license": "MIT",
+    "keywords": [
+        "moment",
+        "moment",
+        "util",
+        "tool"
+    ]
 }
