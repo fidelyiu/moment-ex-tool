@@ -31,7 +31,7 @@ export default function getSliceTimeStamp(t1: number, t2: number, opt?: Partial<
         t2 = t1;
         t1 = c;
     }
-    if (isNaN(+t1) || isNaN(+t2)) return [];
+    if (typeof t1 === "boolean" || isNaN(+t1) || typeof t2 === "boolean" || isNaN(+t2)) return [];
     if (startUnit) {
         t1 = getTime(moment(t1).startOf(startUnit));
     }

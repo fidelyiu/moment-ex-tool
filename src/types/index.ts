@@ -73,3 +73,11 @@ export type SliceOpt = {
  * - '()'：不包含最小值最大值。
  */
 export type InType = "[]" | "[)" | "(]" | "()";
+
+/**
+ * 特殊日期对象，
+ * `{ '2020-5-6': false }`
+ */
+export type SpecialDateObj = {
+    [key in string]: boolean;
+};

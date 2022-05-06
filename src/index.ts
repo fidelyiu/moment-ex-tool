@@ -13,8 +13,10 @@ import isIn from "./is/is-in";
 import isIntersectSame from "./is/is-intersect-same";
 import isIntersect from "./is/is-intersect";
 import isPeriodIn from "./is/is-period-in";
+import isWeekendTimestamp from "./is/is-weekend-timestamp";
 import isWeekend from "./is/is-weekend";
-export { isIn, isIntersectSame, isIntersect, isPeriodIn, isWeekend };
+import isWorkTimestamp from "./is/is-work-timestamp";
+export { isIn, isIntersectSame, isIntersect, isPeriodIn, isWeekendTimestamp, isWeekend, isWorkTimestamp };
 
 // get工具类
 import getAsc from "./get/get-asc";
@@ -22,7 +24,7 @@ import getDesc from "./get/get-desc";
 import getMax from "./get/get-max";
 import getMinMax from "./get/get-min-max";
 import getMin from "./get/get-min";
-import getSliceTimeStamp from "./get/get-slice-time-stamp";
+import getSliceTimeStamp from "./get/get-slice-timestamp";
 import getSliceNumWithFormat from "./get/get-slice-num-with-format";
 import getSliceNum from "./get/get-slice-num";
 import getSliceTimeWithFormat from "./get/get-slice-time-with-format";

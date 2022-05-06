@@ -1,6 +1,6 @@
 {
     "name": "moment-ex-tool",
-    "version": "1.0.13",
+    "version": "1.0.14",
     "description": "moment's extended tool library does not change moment's original logic, it just subtly calls moment.",
     "scripts": {
         "test": "ts-node ./scripts/jest.ts",
