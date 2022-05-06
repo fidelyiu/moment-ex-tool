@@ -110,7 +110,7 @@ describe.each([
     });
 });
 
-describe.only.each([
+describe.each([
     { t: "2022-05-07 00:12:00:000", result: false },
     { t: "2022-05-08 12:00:00:000", result: false },
     { t: NaN, result: false },
